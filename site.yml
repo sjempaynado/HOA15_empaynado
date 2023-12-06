@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: Install updates (Ubuntu)
+    apt:
+      upgrade: dist
+      update_cache: yes
+    changed_when: false
+
+- hosts: Computers
+  become: true
+  roles:
+    - Neutron
+    - Horizon
+    - Cinder
